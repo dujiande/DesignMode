@@ -43,8 +43,6 @@ import retrofit2.Response;
 
 public class RetrofitActivity extends BaseActivity {
 
-    private static final int MY_PERMISSIONS_REQUEST = 2;
-
     @BindView(R.id.button)
     Button btn;
     @BindView(R.id.textView)
@@ -70,34 +68,6 @@ public class RetrofitActivity extends BaseActivity {
     @Override
     public void initData() {
 
-    }
-
-    private boolean checkIfHasPermisions(String[] permissionArr) {
-        for (int i = 0; i < permissionArr.length; i++) {
-            if (ContextCompat.checkSelfPermission(aty, permissionArr[i])
-                    != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void requestPermision(String[] permissionArr) {
-        ActivityCompat.requestPermissions(this, permissionArr, MY_PERMISSIONS_REQUEST);
-    }
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
-        if (requestCode == MY_PERMISSIONS_REQUEST) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                chooseFile();
-            } else {
-                // Permission Denied
-                Toast.makeText(aty, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-            return;
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -133,6 +103,10 @@ public class RetrofitActivity extends BaseActivity {
         } else {
             requestPermision(permissionArr);
         }
+    }
+
+    public void grantedPermissionCallBack(){
+        chooseFile();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
         String[] itemstr = {
                 "普通列表",
                 "网络请求",
-                "策略模式",
+                "观察者模式(Rxjava)",
                 "单例模式",
                 "模板方法模式"
         };
@@ -61,6 +61,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case "网络请求":
                         RetrofitActivity.appJump(aty);
+                        break;
+                    case "观察者模式(Rxjava)":
+                        ObServableActivity.appJump(aty);
                         break;
                     default:
                         Toast.makeText(aty,itemdata.getName(),Toast.LENGTH_SHORT).show();

@@ -1,8 +1,13 @@
 package me.djd.designmode.base;
 
+
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.dou361.statusbar.StatusBarUtil;
 
@@ -16,7 +21,46 @@ import me.djd.designmode.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    public static final int MY_PERMISSIONS_REQUEST = 2;
+
     public Activity aty;
+
+    public boolean checkIfHasPermisions(String[] permissionArr) {
+        for (int i = 0; i < permissionArr.length; i++) {
+            if (ContextCompat.checkSelfPermission(aty, permissionArr[i])
+                    != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void requestPermision(String[] permissionArr) {
+        ActivityCompat.requestPermissions(this, permissionArr, MY_PERMISSIONS_REQUEST);
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        if (requestCode == MY_PERMISSIONS_REQUEST) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                grantedPermissionCallBack();
+            } else {
+                // Permission Denied
+                DeniedPermissionCallBack();
+
+            }
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void DeniedPermissionCallBack() {
+        Toast.makeText(aty, "Permission Denied", Toast.LENGTH_SHORT).show();
+    }
+
+    public void grantedPermissionCallBack(){
+        Toast.makeText(aty, "Permission granted", Toast.LENGTH_SHORT).show();
+    }
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
