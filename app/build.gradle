@@ -34,6 +34,10 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
 
     compile 'io.reactivex:rxjava:+'
+    compile 'io.reactivex:rxandroid:+'
     compile 'com.squareup.retrofit:adapter-rxjava:+'
+    //compile 'com.trello:rxlifecycle:+'
+    //compile 'com.trello:rxlifecycle-components:+'
+
 
 }
