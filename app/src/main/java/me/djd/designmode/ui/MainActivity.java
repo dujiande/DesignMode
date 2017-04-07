@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
                 "普通列表",
                 "网络请求",
                 "观察者模式(Rxjava)",
-                "单例模式",
+                "属性动画",
                 "模板方法模式"
         };
         datalist.clear();
@@ -64,6 +64,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case "观察者模式(Rxjava)":
                         ObServableActivity.appJump(aty);
+                        break;
+                    case "属性动画":
+                        ProPertyAnimationActivity.appJump(aty);
                         break;
                     default:
                         Toast.makeText(aty,itemdata.getName(),Toast.LENGTH_SHORT).show();

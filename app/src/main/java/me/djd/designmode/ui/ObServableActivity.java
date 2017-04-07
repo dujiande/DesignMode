@@ -35,6 +35,8 @@ public class ObServableActivity extends BaseActivity {
     public static void appJump(Context context) {
         Intent intent = new Intent(context, ObServableActivity.class);
         context.startActivity(intent);
+
+
     }
 
     @Override
@@ -45,6 +47,9 @@ public class ObServableActivity extends BaseActivity {
     @Override
     public void initData() {
         sb = new StringBuilder("");
+
+        String str = "haha";
+        resultTv.setText(str.substring(0,2));
     }
 
     /**
